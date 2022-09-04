@@ -9,7 +9,7 @@ import guru.springframework.spring5webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.PushBuilder;
+import java.util.List;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -40,6 +40,13 @@ public class BootStrapData implements CommandLineRunner {
         publisher.setState("FL");
         publisher.getBooks().add(ddd);
 
+        Publisher pub=new Publisher();
+        pub.setName("Kamal ");
+        pub.setCity("Surat");
+        pub.setState("Gujarat");
+        pub.getBooks().add(ddd_2);
+
+
         eric.getBooks().add(ddd);
         steven.getBooks().add(ddd_2);
         ddd.getAuthors().add(eric);
@@ -52,12 +59,17 @@ public class BootStrapData implements CommandLineRunner {
         bookRepository.save(ddd_2);
 
         publisherRepository.save(publisher);
-
-
+        publisherRepository.save(pub);
 
         System.out.println("number of books avaialble "+bookRepository.count());
         System.out.println("number of Authors avaialble "+authorRepository.count());
         System.out.println("number of publisher available "+publisherRepository.count());
+
+       /*** List<Book> booksSet= (List<Book>) bookRepository.findAll();
+
+        Book temp=booksSet.get(0);
+
+        System.out.println(temp.getAuthors());**/
 
     }
 }
